@@ -1,0 +1,37 @@
+﻿@model Cinema.Models.Domain.Hall[]
+
+@section SubNav
+{
+    @await Html.PartialAsync("SubNavigation", SubNavigationMenu.Halls)
+}
+
+<h2 class="admin-heading">Halls</h2>
+<div class="admin-add-btn">
+    @Html.ActionLink("Add hall", "AddHall", "Admin", null, new { @class = "btn btn-success btn-block" })
+</div>
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Places</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var hall in Model)
+        {
+            <tr>
+                <td>@hall.Id</td>
+                <td>@hall.Name</td>
+                <td>@hall.Places</td>
+                <td class="col-lg-2">
+                    @Html.ActionLink("Edit", "EditHall", "Admin", new {hallId = hall.Id}, new {@class = "btn btn-primary btn-block"})
+                    @Html.ActionLink("Remove", "RemoveHall", "Admin", new { hallId = hall.Id }, new { @class = "btn btn-danger btn-block" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

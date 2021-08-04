@@ -1,0 +1,14 @@
+﻿@using Cinema.Models.Domain.Enums
+@using Cinema.Helpers
+@model Cinema.Models.Domain.Enums.Genre[]
+
+@{
+    var genres = EnumHeplers.GetValues<Genre>();
+
+    var selectListItems = genres.Select(genre => new SelectListItem { Text = genre.ToString(), Value = genre.ToString(), Selected = Model != null && Model.Contains(genre) }).ToList();
+}
+
+<div class="form-group">
+    <label>Genre</label>
+    <select multiple name="Genres" id="Genres" class="form-control" asp-items="selectListItems"></select>
+</div>
